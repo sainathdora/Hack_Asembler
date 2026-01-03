@@ -41,7 +41,6 @@ def Deal_A_Instruction(line):
     res = "0"
     num = line[1:]
     # num = (<integer>) base-10
-    print(f"num = {num}")
     num = format(int(num), '015b')
     res = res+num
     print(f"len = {len(res)}")
@@ -59,3 +58,42 @@ def Parse(filename):
                 lines[ind]=BinaryOp
     print(lines)
     writetofile(lines, f'{filename}', 'hack')
+
+
+def Preprocess_c_instruction(line):
+    p2=line
+    try:
+        dest, p2 = line.split("=")
+    except ValueError as e:
+        line = "="+line
+        dest, p2 = line.split("=")
+    try:
+        comp, jump = p2.split(";")
+    except ValueError as e:
+        line = line+";"
+    return line
+        
+
+def Deal_with_C_instruction(line):
+    line = Preprocess_c_instruction(line)
+    dest, p2 = line.split("=")
+    comp, jump = p2.split(";")
+    
+    # jump is string of length 0, if p2 = "D+1;"(eg)
+    # identify the destination eg: dest -> (binary)
+    dest_bits = find_destination_bits(dest)
+    
+
+
+def find_destination_bits(des):
+    d = {
+        "":"000",
+        "M":"001",
+        "D":"010",
+        "MD":"011",
+        "A":"100",
+        "AM":"101",
+        "AD":"110",
+        "AMD":"111"
+    }
+    return d[dest]
