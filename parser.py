@@ -82,10 +82,12 @@ def Deal_with_C_instruction(line):
     # jump is string of length 0, if p2 = "D+1;"(eg)
     # identify the destination eg: dest -> (binary)
     dest_bits = find_destination_bits(dest)
-    
+    # identify the comp bits
+    # "=<comp>;"
 
 
-def find_destination_bits(des):
+
+def find_destination_bits(dest):
     d = {
         "":"000",
         "M":"001",
@@ -97,3 +99,50 @@ def find_destination_bits(des):
         "AMD":"111"
     }
     return d[dest]
+
+def find_Comp_bits(comp):
+    d = {
+        "0":"101010",
+        "1":"111111",
+        "-1":"111010",
+        "D":"001100",
+
+        "A":["110000", 0],
+        "M":["110000", 1],
+        
+        "!D":"001101",
+        
+        "!A":["110001", 0],
+        "!M":["110001", 1],
+        
+        "-D":"001111",
+        
+        "-A":["110011", 0],
+        "-M":["110011", 1],
+
+        "D+1":"011111",
+        
+        "A+1":["110111", 0],
+        "M+1":["110111", 1],
+
+        "D-1":"001110",
+
+        "A-1":["110010", 0],
+        "M-1":["110010", 1],
+
+        "D+A":["000010", 0],
+        "D+M":["000010", 1],
+
+        "D-A":["010011", 0],
+        "D-M":["010011", 1],
+        
+        "A-D":['000111', 0],
+        "M-D":['000111', 1],
+
+        "D&A":["000000", 0],
+        "D&M":["000000", 1],
+
+        "D|A":["010101", 0],
+        "D|M":["010101", 1],
+    }
+    return d[comp]
