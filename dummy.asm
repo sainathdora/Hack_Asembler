@@ -1,19 +1,27 @@
-0
-D=M
-1
-D=D-M
-10
-D;JGT
-1
-D=M
-12
-0;JMP
-(ITSR0)
-0
-D=M
-(OUTPUT_D)
-2
-M=D
+@i 
+M=1
+@Sum
+M=0
+(Loop)
+    @i 
+    D=M
+    @R0
+    D=D-M
+    @STOP
+    D;JGT
+    @i
+    D=M
+    @SUM 
+    M=D+M
+    @i 
+    M=M+1
+    @Loop 
+    0;JMP 
+(STOP)
+    @Sum 
+    D=M
+    @R1 
+    M=D 
 (END)
-14
-0;JMP
+    @END 
+    0;JMP
