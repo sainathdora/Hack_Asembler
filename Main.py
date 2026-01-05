@@ -1,4 +1,5 @@
 import Symbol_Table as ST
+import parser
 fn = "dummy"
 lines_lst = []
 with open(f"{fn}.asm", 'r') as f:
@@ -46,7 +47,7 @@ for i, line in enumerate(lines_lst):
     lines_lst2.append(line)
 print(ST.ST)
 print("\n")
-print(lines_lst, end="\n")
+print(lines_lst, end="\n\n")
 print(lines_lst2)
-
-        
+# Now worry about translation of instruction
+print(parser.Preprocess_c_instruction('D=M'))
