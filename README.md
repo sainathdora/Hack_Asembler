@@ -8,7 +8,8 @@ into Hack machine language (<code>.hack</code>) binary instructions.
 </p>
 
 <hr>
-
+<code>Test</code> folder contains sample .asm programs
+<hr>
 <h2>Overview</h2>
 
 <p>
@@ -150,3 +151,5 @@ dummy.hack
     </pre>
   </li>
 </ol>
+
+
